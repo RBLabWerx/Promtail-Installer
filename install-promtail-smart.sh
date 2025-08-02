@@ -54,22 +54,36 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# Save parsed args before prompting
+LOKI_URL_FROM_ARG="$LOKI_URL"
+HOSTNAME_FROM_ARG="$HOSTNAME"
+JOB_FROM_ARG="$JOB"
+ENV_FROM_ARG="$ENV"
+USE_JOURNAL_FROM_ARG="$USE_JOURNAL"
+
+
 ### === Prompt for missing values === ###
+# Only prompt if one of the required values wasn't set
+if [[ -z "$LOKI_URL_FROM_ARG" || -z "$HOSTNAME_FROM_ARG" || -z "$JOB_FROM_ARG" || -z "$ENV_FROM_ARG" ]]; then
+  # [ your current prompt block here ]
 read -r -p "Enter Loki URL [$DEFAULT_LOKI_URL]: " INPUT
-LOKI_URL="${LOKI_URL:-${INPUT:-$DEFAULT_LOKI_URL}}"
+LOKI_URL="${LOKI_URL_FROM_ARG:-${INPUT:-$DEFAULT_LOKI_URL}}"
 
 read -r -p "Enter host label [$DEFAULT_HOSTNAME]: " INPUT
-HOSTNAME="${HOSTNAME:-${INPUT:-$DEFAULT_HOSTNAME}}"
+HOSTNAME="${HOSTNAME_FROM_ARG:-${INPUT:-$DEFAULT_HOSTNAME}}"
 
 read -r -p "Enter job name [$DEFAULT_JOB]: " INPUT
-JOB="${JOB:-${INPUT:-$DEFAULT_JOB}}"
+JOB="${JOB_FROM_ARG:-${INPUT:-$DEFAULT_JOB}}"
 
 read -r -p "Enter environment label [$DEFAULT_ENV]: " INPUT
-ENV="${ENV:-${INPUT:-$DEFAULT_ENV}}"
+ENV="${ENV_FROM_ARG:-${INPUT:-$DEFAULT_ENV}}"
 
-if [[ -z "$USE_JOURNAL" || "$USE_JOURNAL" == "false" ]]; then
+if [[ -z "$USE_JOURNAL_FROM_ARG" ]]; then
   read -r -p "Enable journal scraping? (y/N): " INPUT
   [[ "$INPUT" =~ ^[Yy]$ ]] && USE_JOURNAL="true" || USE_JOURNAL="false"
+else
+  USE_JOURNAL="$USE_JOURNAL_FROM_ARG"
+fi
 fi
 
 ### === Install config === ###
