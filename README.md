@@ -16,7 +16,7 @@ This is a shell-based Promtail installer for shipping logs to a remote Grafana L
 
 ### Basic (prompts interactively):
 ```bash
-sudo ./install-promtail-smart.sh
+sudo bash ./install-promtail-smart.sh
 ```
 
 ### With arguments (no prompts):
