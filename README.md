@@ -29,3 +29,11 @@ sudo ./install-promtail-smart.sh \
   --loki-url http://[your-loki-server]:3100 \
   --journal
 ```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change.
+
+## License
+
+[MIT](LICENSE)
