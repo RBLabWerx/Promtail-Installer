@@ -7,6 +7,13 @@
 
 #!/bin/bash
 
+# Make sure we are running under bash
+if [ -z "$BASH_VERSION" ]; then
+  echo "This script must be run with bash. Try: sudo bash $0"
+  exit 1
+fi
+
+
 set -e
 
 ### === Default values === ###
@@ -66,7 +73,13 @@ if [[ -z "$USE_JOURNAL" || "$USE_JOURNAL" == "false" ]]; then
 fi
 
 ### === Install config === ###
-INSTALL_DIR="/opt"
+INSTALL_DIR="$(pwd)"
+
+if [ "$INSTALL_DIR" == "/" ]; then
+  echo "ERROR: Refusing to install to root directory (/)."
+  exit 1
+fi
+
 PROMTAIL_BIN="$INSTALL_DIR/promtail"
 CONFIG_FILE="$INSTALL_DIR/promtail-config.yml"
 POSITION_FILE="$INSTALL_DIR/positions.yaml"
