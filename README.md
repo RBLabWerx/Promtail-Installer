@@ -22,12 +22,8 @@ sudo bash ./install-promtail-smart.sh
 ### With arguments (no prompts):
 
 ```bash
-sudo bash ./install-promtail-smart.sh \
-  --host [Host Name] \
-  --job [Job Name] \
-  --env [Enviroment Name] \
-  --loki-url http://[your-loki-server]:3100 \
-  --journal
+sudo bash ./install-promtail-smart.sh --host **your-hostname** --job **your-job-name** --env **your-environment** --loki-url http://**your-loki-ip**:3100 --journal
+
 ```
 
 ## Contributing
