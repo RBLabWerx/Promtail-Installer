@@ -12,7 +12,12 @@ This is a shell-based Promtail installer for shipping logs to a remote Grafana L
   - Optionally enables `journalctl` scraping
 - Sets up Promtail as a systemd service
 
-## Usage
+## Install
+
+Clone Git to current folder on host
+```bash
+git clone https://github.com/RBLabWerx/Promtail-Installer.git
+```
 
 ### Basic (prompts interactively):
 ```bash
