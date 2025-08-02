@@ -22,7 +22,7 @@ sudo bash ./install-promtail-smart.sh
 ### With arguments (no prompts):
 
 ```bash
-sudo ./install-promtail-smart.sh \
+sudo bash ./install-promtail-smart.sh \
   --host [Host Name] \
   --job [Job Name] \
   --env [Enviroment Name] \
